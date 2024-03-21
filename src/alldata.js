@@ -1,20 +1,30 @@
 import "./App.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
+
+
 function Alldata() {
   const [data, setData] = useState([]);
   const [delTrigger,setDelTrigger] = useState(false)
-function delClick(id){
+
+ 
+
+  function delClick(id){
     axios.delete(`https://server-tqam.onrender.com/${id}`).then(setDelTrigger(true))
   }
-useEffect(()=>{
-axios.get("https://server-tqam.onrender.com/data").then((item) => {
+
+  useEffect(()=>{
+
+    axios.get("https://server-tqam.onrender.com/data").then((item) => {
       setData(item.data);
       setDelTrigger(false)
   })
   },[delTrigger])
- return (
+ 
+
+  return (
     <>
+      
       <table>
         <tr>
           <th>
@@ -40,7 +50,7 @@ axios.get("https://server-tqam.onrender.com/data").then((item) => {
             <td>{item.password}</td>
             <td>{item.amount}</td>
             <td>
-              <button onClick={()=>delClick(item._id)} className="btn-del">Delete</button>
+              <button onClick={()=>delClick(item._id)} className="btn-del">delete</button>
             </td>
           </tr>
         ))}
@@ -48,4 +58,5 @@ axios.get("https://server-tqam.onrender.com/data").then((item) => {
     </>
   );
 }
+
 export default Alldata;
